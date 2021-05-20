@@ -5,7 +5,7 @@ require __DIR__ . '/partials/startTheme.php';
 if (!empty($_POST)) {
     // ETAPE 1 : Se connécter à la base de données
     $pdo = new PDO('mysql:dbname=php-poo-blog;host=localhost', 'root');
-    var_dump('Nous sommes connécté à la base de données');
+    var_dump('Nous sommes connectés à la base de données');
 
     // ETAPE 2 : Envoyer une requête de création d'article
     $title = $_POST['title'];
@@ -13,6 +13,22 @@ if (!empty($_POST)) {
     $content = $_POST['content'];
 
     var_dump($title, $description, $content);
+
+    // ETAPE 3 : Création de la requète SQL.
+    // Attention à ne pas concaténer les valeurs
+    // diréctement mais à plutôt utiliser des ?
+    $sql = 'INSERT INTO articles (title, description, content) VALUES (?, ?, ?)';
+
+    // ETAPE 4 : Nous préparons la requète SQL et nous récupérons une requète
+    $request = $pdo->prepare($sql);
+
+    // ETAPE 5 : Envoyer ma requète à la base de données. C'est cette commande
+    // qui enregistre l'article dans la base.
+    $request->execute([
+        $title,
+        $description,
+        $content,
+    ]);
 }
 
 ?>
