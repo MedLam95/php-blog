@@ -17,6 +17,8 @@ class App
         // la fonction isset(...) permet de tester si un
         // élement est présent dans un tableaux.
 
+        // ETAPE 1 : Nous récupérons le nom de la page demandée
+
         $pageName = 'list';
 
         // Ici on test si on a envoyé la query "page"
