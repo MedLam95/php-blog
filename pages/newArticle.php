@@ -2,17 +2,16 @@
 
 require __DIR__ . '/partials/startTheme.php';
 
+$success = false;
+
 if (!empty($_POST)) {
     // ETAPE 1 : Se connécter à la base de données
     $pdo = new PDO('mysql:dbname=php-poo-blog;host=localhost', 'root');
-    var_dump('Nous sommes connectés à la base de données');
 
     // ETAPE 2 : Envoyer une requête de création d'article
     $title = $_POST['title'];
     $description = $_POST['description'];
     $content = $_POST['content'];
-
-    var_dump($title, $description, $content);
 
     // ETAPE 3 : Création de la requète SQL.
     // Attention à ne pas concaténer les valeurs
@@ -29,10 +28,17 @@ if (!empty($_POST)) {
         $description,
         $content,
     ]);
+    $success = true;
 }
 
 ?>
 <h1>Page de création d'article</h1>
+
+<?php if ($success) { ?>
+    <div class="alert alert-success" role="alert">
+        L'article a bien été créé
+    </div>
+<?php } ?>
 
 <form method="POST" action="./index.php?page=newArticle">
     <div class="mb-3">
