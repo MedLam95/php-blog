@@ -8,25 +8,18 @@ use Page;
 /**
  * Ce controller permet d'afficher et de gérer la page "list.php"
  */
-class ListController
+class ListController extends BaseController
 {
-    private ArticleTable $articleTable;
-
-    public function __construct(ArticleTable $articleTable)
-    {
-        $this->articleTable = $articleTable;
-    }
-
     /**
      * Cette méthode permet d'afficher la page de list
+     * 
+     * On collabore plutot que des les créer
      */
     public function display(): void
     {
         $articles = $this->articleTable->findAll();
 
-        $page = new Page();
-
-        $page->print('list', [
+        $this->page->print('list', [
             'articles' => $articles
         ]);
     }
