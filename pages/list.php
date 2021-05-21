@@ -6,8 +6,6 @@ require __DIR__ . '/partials/startTheme.php';
 
 // Faire en sorte que le code suivant fonctionne
 
-$articles = $articleTable->findAll();
-
 
 ?>
 

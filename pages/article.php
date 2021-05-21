@@ -2,7 +2,6 @@
 
 require __DIR__ . '/partials/startTheme.php';
 
-$article = $articleTable->findOne($_GET['id']);
 
 ?>
 
